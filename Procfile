@@ -1,0 +1,1 @@
+web ./build/install/com.example.trackoutflutter/bin/com.example.trackoutflutter

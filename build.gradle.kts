@@ -32,4 +32,12 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+
+    //Kmongo
+    implementation("org.litote.kmongo:kmongo:4.2.8")
+    implementation("org.litote.kmongo:kmongo-coroutine:4.2.8")
+
+    // Koin for Ktor
+    implementation ("io.insert-koin:koin-ktor:3.1.2")
+    implementation ("io.insert-koin:koin-logger-slf4j:3.1.2")
 }

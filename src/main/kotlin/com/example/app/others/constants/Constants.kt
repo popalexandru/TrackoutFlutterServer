@@ -2,5 +2,5 @@ package com.example.app.others.constants
 
 object Constants {
 
-    val DB_NAME = "Trackout Database"
+    val DB_NAME = "TrackoutDatabase"
 }

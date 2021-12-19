@@ -7,6 +7,11 @@ import org.litote.kmongo.and
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.eq
 import org.litote.kmongo.setValue
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class WorkoutRepository(
     db: CoroutineDatabase
@@ -17,12 +22,30 @@ class WorkoutRepository(
         date: String,
         user: String
     ): Workout? {
-        return workouts.findOne(
+        val workout = workouts.findOne(
             and(
                 Workout::userId eq user,
                 Workout::date eq date
             )
         )
+        workout?.let {
+            return workout
+        }
+
+        var formatter = SimpleDateFormat("dd-MM-yyyy")
+
+
+        workouts.insertOne(
+            Workout(
+                userId = user,
+                date = date
+            )
+        )
+
+        return workouts.findOne(and(
+            Workout::userId eq user,
+            Workout::date eq date
+        ))
     }
 
     suspend fun finishWorkout(

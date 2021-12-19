@@ -15,6 +15,14 @@ fun Route.addDummyExercice(
         exerciceRepository.addDummyExample()
     }
 
+    get("api/example/get/all"){
+        val examples = exerciceRepository.getExamples()
+        call.respond(
+            HttpStatusCode.OK,
+            examples
+        )
+    }
+
     post("api/exercice/add"){
         val request = call.receiveOrNull<AddExerciceRequest>() ?: kotlin.run {
             call.respond(

@@ -70,6 +70,10 @@ class ExerciceRepository(
         return exResponses
     }
 
+    suspend fun getExamples():List<Example>{
+        return examples.find().toList()
+    }
+
     suspend fun addDummyExample(){
         examples.insertOne(
             Example(

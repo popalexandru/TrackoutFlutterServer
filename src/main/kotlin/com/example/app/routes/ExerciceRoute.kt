@@ -21,6 +21,7 @@ fun Route.addDummyExercice(
             HttpStatusCode.OK,
             examples
         )
+        return@get
     }
 
     post("api/exercice/add"){

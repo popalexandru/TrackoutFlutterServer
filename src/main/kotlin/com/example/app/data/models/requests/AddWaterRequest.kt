@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AddWaterRequest(
-    val userId: String,
+    val userId: String = "12323",
     val workoutId: String,
-    val waterQty: Int,
+    val waterQty: String,
     val date: String
 )

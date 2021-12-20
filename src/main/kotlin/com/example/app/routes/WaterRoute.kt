@@ -24,7 +24,7 @@ fun Route.waterRoute(
         waterRepository.addWater(
             request.workoutId,
             request.userId,
-            request.waterQty,
+            Integer.parseInt(request.waterQty),
             request.date
         )
         call.respond(

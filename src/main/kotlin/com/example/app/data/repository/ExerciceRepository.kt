@@ -16,6 +16,12 @@ class ExerciceRepository(
     val examples = db.getCollection<Example>()
     val repetitions = db.getCollection<Repetition>()
 
+    suspend fun deleteExercice(
+        exerciceId: String
+    ){
+        exercices.deleteOneById(exerciceId)
+    }
+
     suspend fun addExercice(
         exampleId: String,
         workoutId: String

@@ -4,17 +4,14 @@ import com.example.app.data.repository.ExerciceRepository
 import com.example.app.data.repository.TestRepository
 import com.example.app.data.repository.WaterRepository
 import com.example.app.data.repository.WorkoutRepository
-import com.example.app.routes.addDummyExercice
-import com.example.app.routes.createDummyWorkout
+import com.example.app.routes.exerciceRoute
+import com.example.app.routes.workoutRoute
 import com.example.app.routes.getWorkout
 import com.example.app.routes.waterRoute
 import io.ktor.routing.*
-import io.ktor.http.*
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
 import org.koin.ktor.ext.inject
-import org.litote.kmongo.coroutine.CoroutineDatabase
 
 fun Application.configureRouting() {
 
@@ -31,7 +28,7 @@ fun Application.configureRouting() {
         }
 
         /*workout*/
-        createDummyWorkout(
+        workoutRoute(
             workoutRepository
         )
 
@@ -42,7 +39,7 @@ fun Application.configureRouting() {
         )
 
         /* exercice */
-        addDummyExercice(
+        exerciceRoute(
             exerciceRepository
         )
 

@@ -1,6 +1,7 @@
 package com.example.app.routes
 
 import com.example.app.data.models.requests.AddExerciceRequest
+import com.example.app.data.models.requests.DeleteExercice
 import com.example.app.data.repository.ExerciceRepository
 import io.ktor.application.*
 import io.ktor.http.*
@@ -8,7 +9,7 @@ import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
-fun Route.addDummyExercice(
+fun Route.exerciceRoute(
     exerciceRepository: ExerciceRepository
 ){
     get("api/example/dummy"){
@@ -22,6 +23,17 @@ fun Route.addDummyExercice(
             examples
         )
         return@get
+    }
+
+    post("api/exercice/delete"){
+        val request = call.receiveOrNull<DeleteExercice>() ?: kotlin.run {
+            call.respond(
+                HttpStatusCode.BadRequest
+            )
+            return@post
+        }
+
+        exerciceRepository.deleteExercice(request.exerciceId)
     }
 
     post("api/exercice/add"){

@@ -16,7 +16,7 @@ import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
-fun Route.createDummyWorkout(
+fun Route.workoutRoute(
     workoutRepository: WorkoutRepository
 ){
     get("api/workout/dummy"){

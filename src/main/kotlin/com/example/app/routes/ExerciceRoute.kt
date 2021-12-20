@@ -34,6 +34,10 @@ fun Route.exerciceRoute(
         }
 
         exerciceRepository.deleteExercice(request.exerciceId)
+
+        call.respond(
+            HttpStatusCode.OK
+        )
     }
 
     post("api/exercice/add"){

@@ -4,6 +4,7 @@ import com.example.app.data.models.database.Example
 import com.example.app.data.models.database.Exercice
 import com.example.app.data.models.database.Repetition
 import com.example.app.data.models.response.ExerciceResponse
+import com.mongodb.client.result.DeleteResult
 import com.mongodb.client.result.InsertOneResult
 import org.litote.kmongo.and
 import org.litote.kmongo.coroutine.CoroutineDatabase
@@ -17,9 +18,15 @@ class ExerciceRepository(
     val repetitions = db.getCollection<Repetition>()
 
     suspend fun deleteExercice(
-        exerciceId: String
-    ){
-        exercices.deleteOneById(exerciceId)
+        exampleId: String,
+        workoutId: String
+    ): DeleteResult {
+        return exercices.deleteOne(
+            and(
+                Exercice::exampleId eq exampleId,
+                Exercice::workoutId eq workoutId
+            )
+        )
     }
 
     suspend fun addExercice(

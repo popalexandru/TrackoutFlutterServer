@@ -26,18 +26,21 @@ fun Route.exerciceRoute(
     }
 
     post("api/exercice/delete"){
-        val request = call.receiveOrNull<DeleteExercice>() ?: kotlin.run {
+        val request = call.receiveOrNull<AddExerciceRequest>() ?: kotlin.run {
             call.respond(
                 HttpStatusCode.BadRequest
             )
             return@post
         }
 
-        exerciceRepository.deleteExercice(request.exerciceId)
+        val result = exerciceRepository.deleteExercice(request.exampleId, request.workoutId)
 
-        call.respond(
-            HttpStatusCode.OK
-        )
+        if(result.deletedCount > 1){
+            call.respond(
+                HttpStatusCode.OK
+            )
+        }
+
     }
 
     post("api/exercice/add"){

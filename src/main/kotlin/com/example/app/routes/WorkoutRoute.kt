@@ -9,6 +9,7 @@ import com.example.app.data.repository.WorkoutRepository
 import com.example.app.data.responses.WorkoutResponse
 import com.example.app.others.utils.dateParam
 import com.example.app.others.utils.userIdToken
+import com.example.app.others.utils.workoutId
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.http.*
@@ -31,6 +32,12 @@ fun Route.getWorkout(
     exerciceRepository: ExerciceRepository,
     waterRepository: WaterRepository
 ){
+    get("api/workout/exercices"){
+        call.respond(
+            HttpStatusCode.OK,
+            exerciceRepository.getExerciceResponseByWorkout(call.workoutId)
+        )
+    }
     //authenticate {
         get("api/workout/get"){
             val workout = workoutRepository.getWorkoutByDate(call.dateParam, "12323")

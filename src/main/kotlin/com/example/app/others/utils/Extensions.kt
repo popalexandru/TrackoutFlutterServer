@@ -29,6 +29,9 @@ fun ApplicationCall.timestamp(): Long{
 val ApplicationCall.dateParam: String
     get() = this.parameters["dateParam"] ?: ""
 
+val ApplicationCall.workoutId: String
+    get() = this.parameters["workoutId"] ?: ""
+
 val ApplicationCall.userIdToken: String
     get() = principal<JWTPrincipal>()?.getClaim("userId", String::class) ?: ""
 

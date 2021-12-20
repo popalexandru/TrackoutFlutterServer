@@ -33,6 +33,8 @@ fun Route.addDummyExercice(
         }
 
         exerciceRepository.addExercice(request.exampleId, request.workoutId)
+
+
         call.respond(
             HttpStatusCode.OK
         )

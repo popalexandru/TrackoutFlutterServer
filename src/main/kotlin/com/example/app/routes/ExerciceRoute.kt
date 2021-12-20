@@ -35,7 +35,7 @@ fun Route.exerciceRoute(
 
         val result = exerciceRepository.deleteExercice(request.exampleId, request.workoutId)
 
-        if(result.deletedCount > 1){
+        if(result.deletedCount > 0){
             call.respond(
                 HttpStatusCode.OK
             )

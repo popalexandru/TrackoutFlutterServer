@@ -120,6 +120,7 @@ fun workoutToResponse(workout: Workout): WorkoutReply {
         workout.userId,
         workout.isWorkoutDone,
         workout.date,
-        workout.timestampDone
+        workout.timestampDone,
+        timestampStarted = workout.timestampStarted
     )
 }

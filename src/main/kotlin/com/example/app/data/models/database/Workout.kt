@@ -9,5 +9,6 @@ data class Workout(
     val userId: String,
     val isWorkoutDone: Boolean = false,
     val date: String,
-    val timestampDone: Long = -1
+    val timestampDone: Long = -1,
+    val timestampStarted: Long = -1
 )

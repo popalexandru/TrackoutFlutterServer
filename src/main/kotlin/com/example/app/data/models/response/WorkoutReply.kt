@@ -10,6 +10,7 @@ data class WorkoutReply(
     var isWorkoutDone: Boolean = false,
     var date: String,
     var timestampDone: Long = -1,
+    var timestampStarted: Long = -1,
     var exerciceList: List<ExerciceResponse> = emptyList(),
     var waterQty: Int = 0
 )

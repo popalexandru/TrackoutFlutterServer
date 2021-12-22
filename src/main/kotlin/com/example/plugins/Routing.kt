@@ -4,12 +4,12 @@ import com.example.app.data.repository.ExerciceRepository
 import com.example.app.data.repository.TestRepository
 import com.example.app.data.repository.WaterRepository
 import com.example.app.data.repository.WorkoutRepository
-import com.example.app.routes.exerciceRoute
-import com.example.app.routes.workoutRoute
-import com.example.app.routes.getWorkout
-import com.example.app.routes.waterRoute
+import com.example.app.routes.*
+import com.example.app.services.implementations.DBService
+import com.example.app.services.implementations.SummonerService
 import io.ktor.routing.*
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.response.*
 import org.koin.ktor.ext.inject
 
@@ -20,11 +20,11 @@ fun Application.configureRouting() {
     val exerciceRepository: ExerciceRepository by inject()
     val waterRepository: WaterRepository by inject()
 
+
+
     routing {
         get("/") {
-            call.respondText("Trackout Project!")
-
-            testRepo.writeTest()
+            call.respondText { "Test" }
         }
 
         /*workout*/
@@ -46,5 +46,8 @@ fun Application.configureRouting() {
         waterRoute(
             waterRepository
         )
+
+        summonerRoutes()
+        leagueRoutes()
     }
 }

@@ -1,6 +1,10 @@
 package com.example.app.routes
 
 import com.example.app.data.models.database.Workout
+import com.example.app.data.models.requests.AddWaterRequest
+import com.example.app.data.models.requests.FinishWorkoutRequest
+import com.example.app.data.models.requests.StartWorkoutRequest
+import com.example.app.data.models.requests.WorkoutRequest
 import com.example.app.data.models.response.ExerciceResponse
 import com.example.app.data.models.response.WorkoutReply
 import com.example.app.data.repository.ExerciceRepository
@@ -13,6 +17,7 @@ import com.example.app.others.utils.workoutId
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.http.*
+import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
@@ -21,6 +26,45 @@ fun Route.workoutRoute(
 ){
     get("api/workout/dummy"){
         workoutRepository.createDummyWorkout()
+        call.respond(
+            HttpStatusCode.OK
+        )
+    }
+
+    post("api/workout/start"){
+        val request = call.receiveOrNull<StartWorkoutRequest>() ?: kotlin.run {
+            call.respond(
+                HttpStatusCode.BadRequest
+            )
+            return@post
+        }
+        workoutRepository.startWorkout(request)
+        call.respond(
+            HttpStatusCode.OK
+        )
+    }
+
+    post("api/workout/finish"){
+        val request = call.receiveOrNull<FinishWorkoutRequest>() ?: kotlin.run {
+            call.respond(
+                HttpStatusCode.BadRequest
+            )
+            return@post
+        }
+        workoutRepository.finishWorkout(request)
+        call.respond(
+            HttpStatusCode.OK
+        )
+    }
+
+    post("api/workout/cancel"){
+        val request = call.receiveOrNull<WorkoutRequest>() ?: kotlin.run {
+            call.respond(
+                HttpStatusCode.BadRequest
+            )
+            return@post
+        }
+        workoutRepository.cancelWorkout(request)
         call.respond(
             HttpStatusCode.OK
         )

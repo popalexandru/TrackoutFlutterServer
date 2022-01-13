@@ -1,15 +1,12 @@
 package com.example.plugins
 
-import com.example.app.data.repository.ExerciceRepository
-import com.example.app.data.repository.TestRepository
-import com.example.app.data.repository.WaterRepository
-import com.example.app.data.repository.WorkoutRepository
+import com.example.app.data.repository.trackout.ExerciceRepository
+import com.example.app.data.repository.trackout.TestRepository
+import com.example.app.data.repository.trackout.WaterRepository
+import com.example.app.data.repository.trackout.WorkoutRepository
 import com.example.app.routes.*
-import com.example.app.services.implementations.DBService
-import com.example.app.services.implementations.SummonerService
 import io.ktor.routing.*
 import io.ktor.application.*
-import io.ktor.http.*
 import io.ktor.response.*
 import org.koin.ktor.ext.inject
 
@@ -48,6 +45,5 @@ fun Application.configureRouting() {
         )
 
         summonerRoutes()
-        leagueRoutes()
     }
 }

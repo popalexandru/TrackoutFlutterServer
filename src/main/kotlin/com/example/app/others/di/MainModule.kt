@@ -1,19 +1,15 @@
 package com.example.app.others.di
 
-import com.example.app.data.repository.ExerciceRepository
-import com.example.app.data.repository.TestRepository
-import com.example.app.data.repository.WaterRepository
-import com.example.app.data.repository.WorkoutRepository
+import com.example.app.data.repository.trackout.ExerciceRepository
+import com.example.app.data.repository.trackout.TestRepository
+import com.example.app.data.repository.trackout.WaterRepository
+import com.example.app.data.repository.trackout.WorkoutRepository
 import com.example.app.others.constants.Constants
-import com.example.app.services.implementations.DBService
-import com.example.app.services.implementations.LeagueService
-import com.example.app.services.implementations.SummonerService
+import com.example.app.services.implementations.*
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
-import io.ktor.client.request.*
 import org.koin.dsl.module
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
@@ -37,7 +33,15 @@ val mainModule = module {
     }
 
     single {
+        ChampionMasteryService(get())
+    }
+
+    single {
         SummonerService(get())
+    }
+
+    single {
+        MatchesService(get(), get())
     }
 
     single {

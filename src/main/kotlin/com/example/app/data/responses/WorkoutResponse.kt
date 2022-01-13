@@ -1,6 +1,6 @@
 package com.example.app.data.responses
 
-import com.example.app.data.models.response.WorkoutReply
+import com.example.app.data.models.trackout.response.WorkoutReply
 import kotlinx.serialization.Serializable
 
 @Serializable

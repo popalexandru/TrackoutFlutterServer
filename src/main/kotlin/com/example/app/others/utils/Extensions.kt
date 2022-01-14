@@ -32,6 +32,9 @@ val ApplicationCall.dateParam: String
 val ApplicationCall.workoutId: String
     get() = this.parameters["workoutId"] ?: ""
 
+val ApplicationCall.summonerName: String
+    get() = this.parameters["summonerName"] ?: ""
+
 val ApplicationCall.userIdToken: String
     get() = principal<JWTPrincipal>()?.getClaim("userId", String::class) ?: ""
 

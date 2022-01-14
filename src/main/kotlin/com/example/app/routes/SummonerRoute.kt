@@ -3,6 +3,7 @@ package com.example.app.routes
 import com.example.app.data.dto.ChampionMasteryDto
 import com.example.app.data.dto.match.MatchDTO
 import com.example.app.data.models.SummonerResponse
+import com.example.app.others.utils.summonerName
 import com.example.app.services.implementations.ChampionMasteryService
 import com.example.app.services.implementations.DBService
 import com.example.app.services.implementations.MatchesService
@@ -24,8 +25,8 @@ fun Route.summonerRoutes(){
     val dbService : DBService by inject()
 
     get("/api/summoner/get/byname") {
-        val summoner = summonerService.getSummonerByName("Esys")
-        //val masteries = masteryService.getMasteriesBySummonerId(summoner.id)
+        val summoner = summonerService.getSummonerByName(call.summonerName)
+        print(call.summonerName)
         var masteries = emptyList<ChampionMasteryDto>()
         val matchRefs = matchService.getMatchList(summoner.puuid)
         val matchList = mutableListOf<MatchDTO>()

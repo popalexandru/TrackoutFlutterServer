@@ -14,14 +14,14 @@ import io.ktor.util.*
 class LeagueService(
     private val client: HttpClient
 ){
-    suspend fun getLeaguesBySummonerId(summonerId: String): Set<LeagueDTOItem> {
+    suspend fun getLeaguesBySummonerId(summonerId: String): List<LeagueDTOItem> {
         return try {
             client.get {
                 url("https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/$summonerId?api_key=$API_KEY")
             }
         } catch (e: Exception) {
             print("Error: " + e.message)
-            return emptySet()
+            return emptyList()
         }
     }
 }

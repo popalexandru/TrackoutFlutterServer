@@ -42,6 +42,8 @@ fun Route.summonerRoutes(){
 
         tasks.awaitAll()
 
+        matchList.sortByDescending { it.info?.gameCreation }
+
         val summonerResponse = SummonerResponse(
             summonerDTO = summoner,
             masteries = masteries,

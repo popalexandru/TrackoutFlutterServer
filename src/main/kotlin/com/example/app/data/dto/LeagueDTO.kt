@@ -3,11 +3,6 @@ package com.example.app.data.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-class LeagueDTO(
-    val leagues: Set<LeagueDTOItem>
-)
-
-@Serializable
 data class LeagueDTOItem(
     val freshBlood: Boolean = false,
     val hotStreak: Boolean = false,

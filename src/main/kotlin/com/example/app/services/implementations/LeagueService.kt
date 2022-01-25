@@ -1,6 +1,5 @@
 package com.example.app.services.implementations
 
-import com.example.app.data.dto.LeagueDTO
 import com.example.app.data.dto.LeagueDTOItem
 import com.example.app.data.dto.SummonerDTO
 import com.example.app.others.constants.Constants.GET_SUMMONER_URL_BY_NAME

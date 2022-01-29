@@ -15,7 +15,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import org.koin.ktor.ext.inject
 
-fun Route.summonerRoutes(){
+fun Route.summonerRoutes(
+    spellsService: SpellsService
+){
 
     val summonerService: SummonerService by inject()
     val masteryService: ChampionMasteryService by inject()
@@ -44,6 +46,8 @@ fun Route.summonerRoutes(){
 
         matchList.sortByDescending { it.info?.gameCreation }
 
+        getSpellsForMatches(matchList, spellsService)
+
         val summonerResponse = SummonerResponse(
             summonerDTO = summoner,
             masteries = masteries,
@@ -52,12 +56,19 @@ fun Route.summonerRoutes(){
         )
 
         if(!summoner.isEmpty()){
-            dbService.saveSummoner(summoner)
+            //dbService.saveSummoner(summoner)
         }
 
         call.respond(
             HttpStatusCode.OK,
             summonerResponse
         )
+    }
+}
+suspend fun getSpellsForMatches(matchList: List<MatchDTO>, service: SpellsService){
+    for (match in matchList){
+        for (participant in match.info?.participants!!){
+            participant.spellsList = service.getSpellsByIds(participant.summoner1Id!!, participant.summoner2Id!!)
+        }
     }
 }

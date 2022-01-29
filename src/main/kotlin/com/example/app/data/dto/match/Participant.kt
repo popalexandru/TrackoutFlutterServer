@@ -1,5 +1,6 @@
 package com.example.app.data.dto.match
 
+import com.example.app.data.dto.Spell_Dragon
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -108,5 +109,6 @@ data class Participant(
     val visionWardsBoughtInGame: Int? = 0,
     val wardsKilled: Int? = 0,
     val wardsPlaced: Int? = 0,
-    val win: Boolean? = false
+    val win: Boolean? = false,
+    var spellsList: List<Spell_Dragon>? = emptyList()
 )

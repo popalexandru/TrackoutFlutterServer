@@ -67,4 +67,8 @@ val mainModule = module {
     single{
         WaterRepository(get())
     }
+
+    single {
+        SpellsService(get())
+    }
 }

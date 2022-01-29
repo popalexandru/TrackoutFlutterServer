@@ -5,6 +5,7 @@ import com.example.app.data.repository.trackout.TestRepository
 import com.example.app.data.repository.trackout.WaterRepository
 import com.example.app.data.repository.trackout.WorkoutRepository
 import com.example.app.routes.*
+import com.example.app.services.implementations.SpellsService
 import io.ktor.routing.*
 import io.ktor.application.*
 import io.ktor.response.*
@@ -16,7 +17,7 @@ fun Application.configureRouting() {
     val workoutRepository: WorkoutRepository by inject()
     val exerciceRepository: ExerciceRepository by inject()
     val waterRepository: WaterRepository by inject()
-
+    val spellsService: SpellsService by inject()
 
 
     routing {
@@ -44,6 +45,6 @@ fun Application.configureRouting() {
             waterRepository
         )
 
-        summonerRoutes()
+        summonerRoutes(spellsService)
     }
 }

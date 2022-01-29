@@ -28,16 +28,16 @@ class MatchesService (
     }
 
     suspend fun getMatchById(matchId: String): MatchDTO {
-        getMatchFromDB(matchId)?.let {
+/*        getMatchFromDB(matchId)?.let {
             print("Match found in database :)")
             return it.match
-        }
+        }*/
 
         return try {
             val match: MatchDTO = client.get {
                 url("https://europe.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=$API_KEY")
             }
-            saveMatchToDb(match)
+            //saveMatchToDb(match)
             match
         } catch (e: Exception) {
             print("Error: " + e.message)

@@ -40,6 +40,9 @@ fun Route.summonerRoutes(
             async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[1])) },
             async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[2])) },
             async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[3])) },
+            async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[4])) },
+            async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[5])) },
+            async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[6])) },
         )
 
         tasks.awaitAll()

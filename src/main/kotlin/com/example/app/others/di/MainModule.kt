@@ -71,4 +71,7 @@ val mainModule = module {
     single {
         SpellsService(get())
     }
+    single {
+        RunesService(get())
+    }
 }

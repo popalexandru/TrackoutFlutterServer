@@ -16,7 +16,7 @@ import kotlinx.coroutines.awaitAll
 import org.koin.ktor.ext.inject
 
 fun Route.summonerRoutes(
-    spellsService: SpellsService
+    runesService: RunesService
 ){
 
     val summonerService: SummonerService by inject()
@@ -43,13 +43,16 @@ fun Route.summonerRoutes(
             async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[4])) },
             async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[5])) },
             async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[6])) },
+            async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[7])) },
+            async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[8])) },
+            async(Dispatchers.IO) { matchList.add(matchService.getMatchById(matchRefs[9])) },
         )
 
         tasks.awaitAll()
 
         matchList.sortByDescending { it.info?.gameCreation }
 
-        getSpellsForMatches(matchList, spellsService)
+        getSpellsForMatches(matchList, runesService)
 
         val summonerResponse = SummonerResponse(
             summonerDTO = summoner,
@@ -68,10 +71,10 @@ fun Route.summonerRoutes(
         )
     }
 }
-suspend fun getSpellsForMatches(matchList: List<MatchDTO>, service: SpellsService){
+suspend fun getSpellsForMatches(matchList: List<MatchDTO>, service: RunesService){
     for (match in matchList){
         for (participant in match.info?.participants!!){
-            participant.spellsList = service.getSpellsByIds(participant.summoner1Id!!, participant.summoner2Id!!)
+            participant.runesList = service.getPerks(participant.perks!!)
         }
     }
 }

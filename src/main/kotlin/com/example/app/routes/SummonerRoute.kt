@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import org.koin.ktor.ext.inject
+import java.util.*
 
 fun Route.summonerRoutes(
     runesService: RunesService
@@ -53,6 +54,10 @@ fun Route.summonerRoutes(
         matchList.sortByDescending { it.info?.gameCreation }
 
         getSpellsForMatches(matchList, runesService)
+
+        if(leagues[0].tier != "RANKED_SOLO_5x5"){
+            Collections.swap(leagues, 0, 1)
+        }
 
         val summonerResponse = SummonerResponse(
             summonerDTO = summoner,

@@ -10,7 +10,7 @@ data class LeagueDTOItem(
     val leagueId: String = "",
     val leaguePoints: Int = 0,
     val losses: Int = 999,
-    val queueType: String = "",
+    var queueType: String = "",
     val rank: String = "",
     val summonerId: String = "",
     val summonerName: String = "",

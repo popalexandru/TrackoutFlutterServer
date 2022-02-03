@@ -55,15 +55,15 @@ fun Route.summonerRoutes(
 
         getSpellsForMatches(matchList, runesService)
 
-        if(leagues[0].tier != "RANKED_SOLO_5x5"){
+        if(leagues[0].queueType != "RANKED_SOLO_5x5"){
             Collections.swap(leagues, 0, 1)
         }
 
-        leagues.forEach { 
-            if(it.tier.equals("RANKED_SOLO_5x5")){
-                it.tier = "SOLO DUO"
+        leagues.forEach {
+            if(it.queueType.equals("RANKED_SOLO_5x5")){
+                it.queueType = "SOLO DUO"
             }else{
-                it.tier = "FLEX"
+                it.queueType = "FLEX"
             }
         }
 

@@ -59,6 +59,14 @@ fun Route.summonerRoutes(
             Collections.swap(leagues, 0, 1)
         }
 
+        leagues.forEach { 
+            if(it.tier.equals("RANKED_SOLO_5x5")){
+                it.tier = "SOLO DUO"
+            }else{
+                it.tier = "FLEX"
+            }
+        }
+
         val summonerResponse = SummonerResponse(
             summonerDTO = summoner,
             masteries = masteries,

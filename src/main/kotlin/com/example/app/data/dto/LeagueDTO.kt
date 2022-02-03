@@ -14,7 +14,7 @@ data class LeagueDTOItem(
     val rank: String = "",
     val summonerId: String = "",
     val summonerName: String = "",
-    val tier: String = "",
+    var tier: String = "",
     val veteran: Boolean = false,
     val wins: Int = 0,
     val miniSeries: MiniSeriesDTO? = null

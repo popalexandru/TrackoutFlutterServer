@@ -26,8 +26,11 @@ val mainModule = module {
 /*            defaultRequest {
                 header("Content-Type", "application/json;charset=utf-8")
             }*/
-            install(JsonFeature){
-                serializer = KotlinxSerializer()
+            install(JsonFeature) {
+                serializer = KotlinxSerializer(kotlinx.serialization.json.Json{
+                    ignoreUnknownKeys = true
+                }
+                )
             }
         }
     }

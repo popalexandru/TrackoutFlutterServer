@@ -92,7 +92,8 @@ class ExerciceRepository(
             Example(
                 name = "Name",
                 description = "Description",
-                image = ""
+                image = "",
+                groupId = "0"
             )
         )
     }
